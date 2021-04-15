@@ -15,6 +15,7 @@ const categoryReducer = (state = initialState, action: any) => {
       return Object.assign({}, state, {
         category: action.payload
       });
+    case CATEGORY_CREATE:
     case CATEGORY_UPDATE:
       return Object.assign({}, state, {
         list: [
@@ -22,8 +23,11 @@ const categoryReducer = (state = initialState, action: any) => {
           action.payload
         ]
       })
-    case CATEGORY_CREATE:
     case CATEGORY_DELETE:
+      const newList = state.list.filter((category: any) => category.id !== action.payload);
+      return Object.assign({}, state, {
+        list: newList
+      })
     default:
       return state;
   }

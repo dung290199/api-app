@@ -1,20 +1,22 @@
-import React, { useState, FC, useEffect, Props } from 'react';
+import React, { useState, FC, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getBook } from '../../redux/actions/bookAction';
-import { Redirect } from 'react-router-dom';
+import { getBook, deleteBook } from '../../redux/actions/bookAction';
+import { Redirect, Link } from 'react-router-dom';
 
 const BookInfo: FC<{match: any}> = (props) => {
 
   const dispatch = useDispatch();
   const token = useSelector((state: any) => state.authReducer.token);
   const isLogin = useSelector((state: any) => state.authReducer.isLogin);
-  const Book = useSelector((state: any) => state.BookReducer.Book)
+  const book = useSelector((state: any) => state.bookReducer.book)
 
-  const content = (isLogin && Book)
+  const content = (isLogin && book)
             ? (
               <>
-                <div>Name: {Book.name}</div>
-                <div>Author: {Book.author.name}</div>
+                <div>Name: {book.name}</div>
+                <div>Author: {book.author.name}</div>
+                <Link to={{ pathname: `/books/edit/${book.id}` }} >Edit</Link><br/>
+                <Link to="/books/all/"  onClick={() => dispatch(deleteBook(props, token, +props.match.params.id))} >Delete</Link><br/>
               </>
             )
             : isLogin

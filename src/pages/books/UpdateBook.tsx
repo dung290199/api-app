@@ -8,24 +8,11 @@ const UpdateBook: FC<{match: any}> = (props) => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state: any) => state.authReducer.isLogin)
   const token = useSelector((state: any) => state.authReducer.token);
-  const list = useSelector((state: any) => state.updateReducer.list);
-  const data = useSelector((state: any) => state.updateReducer.book);
+  const list = useSelector((state: any) => state.bookReducer.list);
+  const data = useSelector((state: any) => state.bookReducer.book);
   const [book, setBook] = useState(
     {
-      name: null,
-      description: null,
-      price: 0,
-      year: 0,
-      author: {
-        id: 0,
-        name: null,
-        website: null,
-        birthday: null,
-        cover: null
-      },
-      publisher: null,
-      cover: null,
-      categories: [],
+      ...data
     }
   );
 
@@ -37,6 +24,7 @@ const UpdateBook: FC<{match: any}> = (props) => {
             : ( name === "year" )
               ? 1842
               : value;
+    newvalue = ( value === "" ) ? null : value;
     
     setBook({
       ...book,
@@ -111,61 +99,61 @@ const UpdateBook: FC<{match: any}> = (props) => {
               <div>
                 <label>
                   Name:
-                  <input type="text" name="name" onChange={handleBookChange}/>
+                  <input type="text" name="name" value={book.name} onChange={handleBookChange}/>
                 </label><br/>
                 <label>
                   Description:
-                  <input type="text" name="description" onChange={handleBookChange}/>
+                  <input type="text" name="description" value={book.description} onChange={handleBookChange}/>
                 </label><br/>
                 <label>
                   Price:
-                  <input type="number" step="0.01" name="price" onChange={handleBookChange}/>
+                  <input type="number" step="0.01" name="price" value={book.price} onChange={handleBookChange}/>
                 </label><br/>
                 <label>
                   Year:
-                  <input type="number" name="year" onChange={handleBookChange}/>
+                  <input type="number" name="year" value={book.year} onChange={handleBookChange}/>
                 </label><br/>
                 <h5>Author: </h5>
                 <label>
                   Id:
-                  <input type="number" name="id" onChange={handleAuthorChange}/>
+                  <input type="number" name="id" value={book.author.id} onChange={handleAuthorChange}/>
                 </label><br/>
                 <label>
                   Name:
-                  <input type="text" name="name" onChange={handleAuthorChange}/>
+                  <input type="text" name="name" value={book.author.name} onChange={handleAuthorChange}/>
                 </label><br/>
                 <label>
                   Website:
-                  <input type="text" name="website" onChange={handleAuthorChange}/>
+                  <input type="text" name="website" value={book.author.website} onChange={handleAuthorChange}/>
                 </label><br/>
                 <label>
                   Birthday:
-                  <input type="text" name="birthday" onChange={handleAuthorChange}/>
+                  <input type="text" name="birthday" value={book.author.birthday} onChange={handleAuthorChange}/>
                 </label><br/>
                 <label>
                   Cover:
-                  <input type="text" name="cover" onChange={handleAuthorChange}/>
+                  <input type="text" name="cover" value={book.author.cover} onChange={handleAuthorChange}/>
                 </label><br/>
                 <label>
                   Publisher:
-                  <input type="text" name="publisher" onChange={handleBookChange}/>
+                  <input type="text" name="publisher" value={book.publisher} onChange={handleBookChange}/>
                 </label><br/>
                 <label>
                   Cover:
-                  <input type="text" name="cover" onChange={handleBookChange}/>
+                  <input type="text" name="cover" value={book.cover} onChange={handleBookChange}/>
                 </label><br/>
                 <h5>Categories:</h5>
                 <label>
                   Id
-                  <input type="number" name="id"  onChange={handleCategoryChange}/>
+                  <input type="number" name="id" value={book.categories[0].id} onChange={handleCategoryChange}/>
                 </label><br/>
                 <label>
                   Name:
-                  <input type="text" name="name"  onChange={handleCategoryChange}/>
+                  <input type="text" name="name" value={book.categories[0].name} onChange={handleCategoryChange}/>
                 </label><br/>
                 <label>
                   Description:
-                  <input type="text" name="description"  onChange={handleCategoryChange}/>
+                  <input type="text" name="description" value={book.categories[0].description} onChange={handleCategoryChange}/>
                 </label><br/>
               </div>
               <button type="submit">SAVE</button>

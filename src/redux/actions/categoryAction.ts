@@ -80,12 +80,13 @@ export const deleteCategory = (props: any, token: String, id: number) => (dispat
     `/categories/${id}`,
     {
       headers: {
-        'Authentication': `Bear ${token}`
+        'Authorization': `Bearer ${token}`
       }
     })
       .then(res => {
         dispatch({
-          type: CATEGORY_DELETE
+          type: CATEGORY_DELETE,
+          payload: id
         });
         props.history.push("/categories/all");
       })

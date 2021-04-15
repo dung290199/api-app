@@ -15,15 +15,19 @@ const authorReducer = (state = initialState, action: any) => {
       return Object.assign({}, state, {
         author: action.payload
       });
+    case AUTHOR_CREATE:
     case AUTHOR_UPDATE:
       return Object.assign({}, state, {
         list: [
           ...state.list,
           action.payload
         ]
-      })
-    case AUTHOR_CREATE:
+      });
     case AUTHOR_DELETE:
+      const newList = state.list.filter((author: any) => author.id !== action.payload);
+      return Object.assign({}, state, {
+        list: newList
+      })
     default:
       return state;
   }

@@ -1,9 +1,9 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL } from '../type';
+import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from '../type';
 
 const initialState: any = {
-  token: null,
-  user: null,
-  isLogin: false
+  token: localStorage.getItem('token'),
+  user: localStorage.getItem('user'),
+  isLogin: localStorage.getItem('isLogin') === 'true'
 };
 
 const authReducer = (state = initialState, action: any) => {
@@ -14,7 +14,12 @@ const authReducer = (state = initialState, action: any) => {
           isLogin: true
       });
     case LOGIN_FAIL:
-      return Object.assign({}, state, initialState);
+    case LOGOUT: 
+      return Object.assign({}, state, {
+        token: null,
+        user: null,
+        isLogin: false
+      });
   }
 
   return state;

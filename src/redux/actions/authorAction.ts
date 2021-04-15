@@ -85,7 +85,8 @@ export const deleteAuthor = (props: any, token: String, id: number) => (dispatch
     })
       .then(res => {
         dispatch({
-          type: AUTHOR_DELETE
+          type: AUTHOR_DELETE,
+          payload: id
         });
         props.history.push("/authors/all");
       })
