@@ -17,10 +17,11 @@ const CategoryInfo: FC<{match: any}> = (props) => {
   const content = (isLogin && category)
             ? (
               <>
+                <div>ID: {category.id}</div>
                 <div>Name: {category.name}</div>
                 <div>Description: {category.description}</div>
                 <Link to={{ pathname: `/categories/edit/${+props.match.params.id}` }}> Edit </Link>
-                <Link to={{ pathname: `/categories/delete/${+props.match.params.id}` }} onClick={() => dispatch(deleteCategory(props, token, +props.match.parms.id))}> Delete </Link>
+                <Link to="/categories/all" onClick={() => dispatch(deleteCategory(props, token, +props.match.parms.id))}> Delete </Link>
               </>
             )
             : isLogin

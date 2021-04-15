@@ -22,7 +22,7 @@ const AuthorInfo: FC<{match: any}> = (props) => {
                   })}
                 </ul>
                 <Link to={{ pathname: `/authors/edit/${+props.match.params.id}` }}>Edit</Link>
-                <Link to={{ pathname: `/authors/delete/${+props.match.params.id}` }} onClick={() => dispatch(deleteAuthor(props, token, +props.match.params.id))}>Delete</Link>
+                <Link to="/authors/all" onClick={() => dispatch(deleteAuthor(props, token, +props.match.params.id))}>Delete</Link>
               </>
             )
             : isLogin

@@ -29,11 +29,10 @@ const NewBook: FC = (props) => {
 
   const handleBookChange = (e: React.ChangeEvent<any>) => {
     const {name, value} = e.target;
-    // let newvalue = (name === "price" || name === "year") ? (value as number) : (value as String);
     let newvalue = (name === "price") 
             ? 10.2
             : ( name === "year" )
-              ? 1842
+              ? 1872
               : value;
     
     setBook({
@@ -44,7 +43,7 @@ const NewBook: FC = (props) => {
 
   const handleAuthorChange = (e: React.ChangeEvent<any>) => {
     const {name, value} = e.target;
-    let newvalue = (name === "id") ? 10 : value;
+    let newvalue = (name === "id") ? 441 : value;
     setBook({
       ...book,
       author: {
@@ -58,7 +57,7 @@ const NewBook: FC = (props) => {
 
   const handleCategoryChange = (e: React.ChangeEvent<any>) => {
     const {name, value} = e.target;
-    let newvalue = (name === "id") ? 10 : value;
+    let newvalue = (name === "id") ? 71 : value;
 
     let newCate: any = book.categories;
     newCate = newCate.length

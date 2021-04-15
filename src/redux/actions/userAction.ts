@@ -68,11 +68,19 @@ export const updateUser = (data: any, props: any, token: String, id: number) => 
       .catch(err => console.log(err));
 }
 
-export const deleteUser = (data: any, props: any, token: String, id: number) => (dispatch: any) => {
-  return axios.delete(`/users/${id}`)
+export const deleteUser = (props: any, token: String, id: number) => (dispatch: any) => {
+  return axios.delete(
+    `/users/${id}`,
+    {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+  )
       .then(res => {
         dispatch({
-          type: USER_DELETE
+          type: USER_DELETE,
+          payload: id
         });
         props.history.push("/users/all");
       })

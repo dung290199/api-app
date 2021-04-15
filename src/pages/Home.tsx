@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // import { RootState } from '../redux/reducers';
 
-const Home: FC = (props) => {
+const Home: FC<{history: any}> = (props) => {
 
   const isLogin = useSelector((state: any) => state.authReducer.isLogin); 
 

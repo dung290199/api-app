@@ -1,4 +1,4 @@
-import Form from './components/Form';
+import Form from './pages/LoginPage';
 import Home from './pages/Home';
 import User from './pages/users/UserMenu';
 import Book from './pages/books/BookMenu';
@@ -52,11 +52,6 @@ const routes = [
     exact: false,
   },
   {
-    path: '/users/delete/:id',
-    component: UserList,
-    exact: true,
-  },
-  {
     path: '/books',
     component: Book,
     exact: true,
@@ -74,17 +69,12 @@ const routes = [
   {
     path: '/books/:id',
     component: BookInfo,
-    exact: false,
+    exact: true,
   },
   {
     path: '/books/edit/:id',
     component: UpdateBook,
     exact: false,
-  },
-  {
-    path: '/books/delete/:id',
-    component: BookList,
-    exact: true,
   },
   {
     path: '/authors',
@@ -112,11 +102,6 @@ const routes = [
     exact: true,
   },
   {
-    path: '/authors/delete/:id',
-    component: Category,
-    exact: true,
-  },
-  {
     path: '/categories',
     component: Category,
     exact: true,
@@ -140,11 +125,6 @@ const routes = [
     path: '/categories/edit/:id',
     component: UpdateCategory,
     exact: false,
-  },
-  {
-    path: '/categories/delete/:id',
-    component: Category,
-    exact: true,
   },
 ];
 

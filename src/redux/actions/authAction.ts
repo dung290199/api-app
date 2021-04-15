@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL } from '../type';
+import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from '../type';
 import axios from '../../axios';
 
 export const login = ( data: any, props: any ) => ( dispatch: any ) => {
@@ -12,6 +12,10 @@ export const login = ( data: any, props: any ) => ( dispatch: any ) => {
     .then(res => {
       console.log("login success");
       // console.log("data ", res.data);
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('user', res.data.user);
+      localStorage.setItem('isLogin', 'true');
+      
       dispatch(
         {
           type: LOGIN_SUCCESS,
@@ -30,3 +34,11 @@ export const login = ( data: any, props: any ) => ( dispatch: any ) => {
       }
     ));
 };
+
+export const logout = () => (dispatch: any) => {
+  localStorage.clear();
+  // props.history.push('/');
+  return dispatch({
+    type: LOGOUT
+  })
+}

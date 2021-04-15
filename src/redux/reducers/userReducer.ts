@@ -16,6 +16,7 @@ const userReducer = (state = initialState, action: any) => {
       return Object.assign({}, state, {
         user: action.payload
       });
+    case USER_CREATE:
     case USER_UPDATE:
       return Object.assign({}, state, {
         list: [
@@ -23,8 +24,11 @@ const userReducer = (state = initialState, action: any) => {
           action.payload
         ]
       })
-    case USER_CREATE:
     case USER_DELETE:
+      const newList = state.list.filter((user: any) => user.id !== action.payload);
+      return Object.assign({}, state, {
+        list: newList
+      })
     default:
       return state;
   }
